@@ -1,5 +1,10 @@
 # supportscripts
 
-In deze repository verzamel ik batch schripts die ik gemaakt heb om veel gebruikte processen te automatiseren.
+This repository collects among others batch scripts, witch I use to automate frequently used processes.
 
-Inmiddels zijn er refactoring-plannen om de scripts nog efficienter en duidelijker te maken.
+There are refactoring plans, to make the scripts more efficient an more 'meaningful".
+
+## Features
+##### 11-12-2019
+* Added nodemonSeriesTool.
+    * Script is used to create and start a service for my seriesTool app.
