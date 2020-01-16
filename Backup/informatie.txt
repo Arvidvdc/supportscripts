@@ -1,0 +1,28 @@
+Backup informatie
+
+##### Netwerk backup #####
+De netwerk backup zorgt ervoor dat de gebruikersbestanden geback-upt worden.De bestanden
+worden dan tijdelijk verzameld in de backup map.
+Het gaat dan om de volgende mappen:
+# SHARES:
+  - Images          - Public   - SerieTool  - Server   - wwwroot      - SYSVOL
+# HOMEFOLDERS:
+  - Administrator   - Kodi     - Lisanne    - SARgE    - Thirza
+
+##### Systeem backup #####
+De systeem backup maakt zowel een backup van de gebruikersbestanden als van de operationele
+bestanden.
+--- LET OP! Dit is geen herstel-methode voor het systeem o.i.d. ---
+De operationele- en gebruikersbestanden worden gescheiden geback-upt.
+# GEBRUIKERSBESTANDEN:
+  - Desktop / bureaublad  - Documents / Documenten       - Downloads  - Desktop / bureaublad
+  - Music / Muziek        - Pictures / Afbeeldingen      - OneDrive   - Videos                    
+  
+##### Opslaan #####
+Bij deze keuze worden de bestanden naar een extern medium verplaatst zodat de bestanden
+geheel veilig zijn.
+
+##### Software #####
+Alle software die op het netwerk staat wordt gearchiveerd. Alle software blijft voorlopig
+nog beschikbaar maar na het uitvoeren van deze backup, worden oude(re) versies van het net-
+werk verwijdert.
