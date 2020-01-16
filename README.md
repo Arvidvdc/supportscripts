@@ -6,6 +6,7 @@ There are refactoring plans, to make the scripts more efficient an more 'meaning
 
 ## Features
 ##### 16-01-2020
+* Added information about backup strategy.
 * Added Network backup script.
 
 ##### 11-12-2019
