@@ -61,13 +61,19 @@ ECHO Kies de gewenste vorm van backup en deze zal worden uitgevoerd.
 ECHO.
 
 :Continue
-ECHO KEUZE           BESCHRIJVING                                             DUUR
-ECHO 1. Netwerk    : De verschillende netwerkbronnen worden geback-upt.       3 uur
-ECHO 2. Systeem    : Alle gegevens op het huidige systeem worden geback-upt.
-ECHO 3. Opslaan    : De backup zal naar veilig medium verplaatst worden.
-ECHO 4. Software   : Alle beschikbare software wordt gearchiveerd.
+ECHO KEUZE            BESCHRIJVING                                             DUUR
+ECHO 1. Netwerk     : De verschillende netwerkbronnen worden geback-upt.       3 uur
+ECHO 2. Systeem     : Alle gegevens op het huidige systeem worden geback-upt.  Niet beschbaar
+ECHO 3. Verplaatsen : De backup zal naar veilig medium verplaatst worden.      In onderhoud
+ECHO 4. Software    : Alle beschikbare software wordt gearchiveerd.            Niet beschbaar
 ECHO.
-ECHO Q. Afsluiten  : I. Informatie weergeven.
+IF EXIST informatie.txt (
+    ECHO I. Informatie  : Informatie over de backup weergeven.
+) ELSE (
+    ECHO. >> %logFile%
+    ECHO      Informatie bestand niet gevonden. >> %logFile%
+)
+ECHO Q. Afsluiten   : Backup afsluiten.
 
 :CHOICE
 SET /P C=[1,2,3,4,Q,q,I,i]? > NUL
@@ -137,8 +143,6 @@ REM Thirza
 SET source=\\SARgE-DOMAIN\Thirza
 SET target=\\sarge-domain\Backup\Systemen\SARgE-DOMAIN\_Users\Thirza
 CALL :ExecuteBackUp
-GOTO EoS
-
 ECHO.
 ECHO Gereed.
 ECHO Logbestand: %logfile%
@@ -160,11 +164,56 @@ GOTO EoS
 :Opslaan
 CLS
 COLOR 06
+ECHO. >> %logFile%
+ECHO ##### verplaats script gekozen. >> %logFile%
 ECHO.
-ECHO Opslaan
+ECHO Verplaatsen
 ECHO.
-ECHO Druk op een toets om door te gaan.
-PAUSE > NUL
+ECHO.
+ECHO Kies welke backup naar de backup schijf verplaatst moet worden:
+ECHO.
+ECHO KEUZE                 BESCHRIJVING
+IF EXIST \\sarge-domain\Backup\Systemen\SARgE-DOMAIN\*.7z (
+    ECHO 0. Netwerk          : Beschikbare netwerk backup verplaatsen.
+)
+IF EXIST \\sarge-domain\Backup\Systemen\Lisanne\*.7z (
+    ECHO 1. Lisanne          : Lisanne backup verplaatsen.
+)
+IF EXIST \\sarge-domain\Backup\Systemen\SARgE-CHILL\*.7z (
+    ECHO 2. SARgE-CHILL      : SARgE-CHILL backup verplaatsen.
+)
+IF EXIST \\sarge-domain\Backup\Systemen\SARgE-KODI\*.7z (
+    ECHO 3. SARgE-KODI       : SARgE-KODI backup verplaatsen.
+)
+IF EXIST \\sarge-domain\Backup\Systemen\SARgE-MOBILE\*.7z (
+    ECHO 4. SARgE-CHILL      : SARgE-CHILL backup verplaatsen.
+)
+IF EXIST \\sarge-domain\Backup\Systemen\SARgE-CHILL\*.7z (
+    ECHO 5. SARgE-MOBILE     : SARgE-MOBILE backup verplaatsen.
+)
+IF EXIST \\sarge-domain\Backup\Systemen\SARgE-WORK-II\*.7z (
+    ECHO 6. SARgE-WORK-II    : SARgE-WORK-II backup verplaatsen.
+)
+
+ECHO.
+ECHO O. Overigen         : Zelf een map opgeven.
+ECHO T. Terug            : Terug naar vorig menu.
+ECHO Q. Afsluiten        : Backup afsluiten.
+
+SET /P C=[0,1,2,3,4,Q,q,O,o,T,t,EXTRA]? > NUL
+
+IF /I "%C%"=="T" (
+    ECHO. >> %logFile%
+    ECHO ##### Terug naar menu. >> %logFile%
+    GOTO menu
+)
+IF /I "%C%"=="O" GOTO Overigen
+IF /I "%C%"=="EXTRA" (
+    ECHO EXTRA
+    PAUSE
+    GOTO Opslaan
+) 
+IF /I "%C%"=="Q" GOTO EoS
 GOTO EoS
 
 :Software
